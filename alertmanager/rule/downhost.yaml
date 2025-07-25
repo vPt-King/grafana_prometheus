@@ -1,0 +1,11 @@
+groups:
+- name: host
+  rules:
+  - alert: InstanceDown
+    expr: up == 0
+    for: 2m
+    labels:
+      severity: page
+    annotations:
+      summary: "Instance {{$labels.instance}} down on host: {{$labels.instance}}" 
+      description: "{{$labels.instance}} of job {{$labels.job}} on host: {{$labels.instance}} has been down for more than 5 minutes."

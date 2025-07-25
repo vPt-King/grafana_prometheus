@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  victoriametrics:
+    image: victoriametrics/victoria-metrics:v1.99.0
+    container_name: victoriametrics
+    ports:
+      - "8428:8428" # HTTP API port
+    volumes:
+      - ./data:/victoria-metrics-data
+    command:
+      - '--retentionPeriod=2'                   
+      - '--storageDataPath=/victoria-metrics-data'
+      - '--httpListenAddr=:8428'
+      - '--search.maxQueryDuration=60s'          
+      - '--loggerLevel=INFO'
+    restart: unless-stopped

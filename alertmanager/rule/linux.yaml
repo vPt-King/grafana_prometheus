@@ -1,0 +1,36 @@
+groups:
+- name: Linux-alert
+  rules:
+
+  - alert: "HostOutOfCPU"
+    expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 85
+    for: 10s
+    labels:
+      severity: "Critical"
+      #custom_label: "linuxcpu"
+    annotations:
+      summary: "Host out of CPU (instance {{ $labels.instance }}) on host: {{ $labels.instance }} (job: {{ $labels.job }})"
+      description: "CPU is almost full (< 15% left) on host: {{ $labels.instance }} (job: {{ $labels.job }})"
+      #value: "{{ $value }}"
+
+  - alert: "HostOutOfDiskSpace"
+    expr: (node_filesystem_avail_bytes * 100) / node_filesystem_size_bytes < 15 and ON (instance, device, mountpoint) node_filesystem_readonly == 0
+    for: 10s
+    labels:
+      severity: "Critical"
+      #custom_label: "linuxdisk"
+    annotations:
+      summary: "Host out of disk space (instance {{ $labels.instance }}) on host: {{ $labels.instance }} (job: {{ $labels.job }})"
+      description: "Disk is almost full (< 15% left) on host: {{ $labels.instance }} (job: {{ $labels.job }})"
+      #value: "{{ $value }}"
+
+  - alert: "HostOutOfMemory"
+    expr: node_memory_Active_anon_bytes / node_memory_MemTotal_bytes * 100 > 85
+    for: 10s
+    labels:
+      severity: "Critical"
+      #custom_label: "linuxmemory"
+    annotations:
+      summary: "Host out of memory (instance {{ $labels.instance }}) on host: {{ $labels.instance }} (job: {{ $labels.job }})"
+      description: "Memory is almost full (> 85%) on host: {{ $labels.instance }} (job: {{ $labels.job }})"
+      #value: "{{ $value }}"

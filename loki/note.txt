@@ -1,0 +1,15 @@
+backup loki:  tar -czvf loki-backup.tar.gz ./data
+
+restore: 
+docker-compose down
+rm -rf ./data
+tar -xzvf loki-backup.tar.gz
+docker-compose up -d
+
+*Cách cài promtail trên windows 
+
+Expand-Archive -LiteralPath "c:\promtail\promtail-windows-amd64.exe.zip" -DestinationPath "c:\promtail"
+
+# Before running the next command, copy the config to "c:\promtail\promtail-local-config.yaml"
+
+New-Service -Name "Promtail" -DisplayName = "Monitora Logs" -StartupType = "Automatic" -BinaryPathName "C:\promtail\\promtail-windows-amd64.exe --config.file=promtail-local-config.yaml"

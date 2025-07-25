@@ -1,0 +1,14 @@
+in prometheus.yaml config this:
+
+remote_write:
+  - url: http://<vm_host_ip_victoriametrics>:8428/api/v1/write
+
+backup and restore: 
+tar -czvf vm-backup.tar.gz ./data
+
+restore: 
+Dừng container: docker-compose down
+
+Giải nén backup vào ./data
+
+Khởi động lại: docker-compose up -d
