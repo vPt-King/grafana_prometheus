@@ -1,6 +1,10 @@
 global:
   scrape_interval: 15s
 
+#Victoria metrics config
+remote_write:
+  - url: http://10.50.81.14:8428/api/v1/write 
+
 scrape_configs:
   - job_name: 'localhost'
     static_configs:
