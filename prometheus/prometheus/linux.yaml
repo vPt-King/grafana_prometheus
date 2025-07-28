@@ -25,7 +25,7 @@ groups:
       #value: "{{ $value }}"
 
   - alert: "HostOutOfMemory"
-    expr: node_memory_Active_anon_bytes / node_memory_MemTotal_bytes * 100 > 40
+    expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 40
     for: 10s
     labels:
       severity: "Critical"

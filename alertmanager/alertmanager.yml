@@ -1,12 +1,16 @@
 route:
   group_by: [Alertname]
   receiver: email-receiver
+  repeat_interval: 5m
+  group_wait: 10s
+  group_interval: 1m
 
 receivers:
 - name: email-receiver
   email_configs:
   - to: thanh.vu10@mobifone.vn, linh.leviet@mobifone.vn
     from: vpthanh1302@gmail.com
+    send_resolved: true
     smarthost: smtp.gmail.com:587
     auth_username: "vpthanh1302@gmail.com"
     auth_identity: "vpthanh1302@gmail.com"
