@@ -1,17 +1,13 @@
-global:
-  smtp_smarthost: 'smtp.mobifone.vn:587'
-  smtp_from: 'alertmanager@mobifone.vn'
-  smtp_auth_username: 'alertmanager@mobifone.vn'
-  smtp_auth_password: 'YOUR_SMTP_PASSWORD'
-
 route:
+  group_by: [Alertname]
   receiver: email-receiver
-  group_wait: 10s
-  group_interval: 1m
-  repeat_interval: 1h
 
 receivers:
-  - name: email-receiver
-    email_configs:
-      - to: 'thanh.vu10@mobifone.vn, linh.leviet@mobifone.vn'
-        send_resolved: true
+- name: email-receiver
+  email_configs:
+  - to: thanh.vu10@mobifone.vn, linh.leviet@mobifone.vn
+    from: vpthanh1302@gmail.com
+    smarthost: smtp.gmail.com:587
+    auth_username: "vpthanh1302@gmail.com"
+    auth_identity: "vpthanh1302@gmail.com"
+    auth_password: "msfj kaax fwsc wqtr"

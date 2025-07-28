@@ -1,7 +1,6 @@
 docker run -d --name alertmanager \
   -p 9093:9093 \
-  -v alertmanager.yml:/etc/alertmanager/alertmanager.yml \
-  -v ./data:/alertmanager \
+  -v $(pwd)/alertmanager.yml:/etc/alertmanager/alertmanager.yml \
   prom/alertmanager:v0.26.0 \
   --config.file=/etc/alertmanager/alertmanager.yml \
   --cluster.listen-address=0.0.0.0:9094 \

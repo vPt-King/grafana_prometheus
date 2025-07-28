@@ -25,12 +25,12 @@ groups:
       #value: "{{ $value }}"
 
   - alert: "HostOutOfMemory"
-    expr: node_memory_Active_anon_bytes / node_memory_MemTotal_bytes * 100 > 85
+    expr: node_memory_Active_anon_bytes / node_memory_MemTotal_bytes * 100 > 40
     for: 10s
     labels:
       severity: "Critical"
       #custom_label: "linuxmemory"
     annotations:
       summary: "Host out of memory (instance {{ $labels.instance }}) on host: {{ $labels.instance }} (job: {{ $labels.job }})"
-      description: "Memory is almost full (> 85%) on host: {{ $labels.instance }} (job: {{ $labels.job }})"
+      description: "Memory is almost full (> 40%) on host: {{ $labels.instance }} (job: {{ $labels.job }})"
       #value: "{{ $value }}"
