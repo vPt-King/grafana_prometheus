@@ -1,3 +1,5 @@
 prometheus/prometheus-data/
 
 victoriametrics/data/
+
+loki/data/

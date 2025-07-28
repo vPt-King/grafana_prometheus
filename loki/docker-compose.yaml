@@ -8,6 +8,6 @@ services:
       - "3100:3100"
     volumes:
       - ./loki-config.yaml:/etc/loki/config.yaml
-      - ./data:/loki
+      - ./data:/tmp/loki
     command: -config.file=/etc/loki/config.yaml
     restart: unless-stopped

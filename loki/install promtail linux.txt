@@ -10,6 +10,7 @@ wget https://raw.githubusercontent.com/grafana/loki/v3.2.0/clients/cmd/promtail/
 *Config promtail*
 
 useradd --system promtail
+usermod -a -G adm promtail
 vi /etc/systemd/system/promtail.service
 ###Paste this###
 [Unit]
@@ -30,8 +31,4 @@ service promtail start
 service promtail status
 systemctl enable promtail.service
 
-usermod -a -G adm promtail
-id promtail
-service promtail restart
-service promtail status
 
