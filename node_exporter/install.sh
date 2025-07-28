@@ -29,7 +29,7 @@ After=network.target
 User=nodeusr
 Group=nodeusr
 Type=simple
-ExecStart=/usr/local/bin/node_exporter
+ExecStart=/usr/local/bin/node_exporter --web.listen-address="0.0.0.0:9100"
 
 [Install]
 WantedBy=multi-user.target
